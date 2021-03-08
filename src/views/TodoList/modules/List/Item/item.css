@@ -1,0 +1,25 @@
+.item {
+    display: flex;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+}
+
+.item .item-checkbox {
+    margin: 10px 25px 0 5px;
+}
+
+.item .item-body {
+    flex: 1;
+}
+
+.item .item-del {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    color: #fff;
+    border: 1px solid red;
+    border-radius: 2px;
+    background-color: rgb(253, 101, 101);
+    transform: translateY(-50%);
+}
