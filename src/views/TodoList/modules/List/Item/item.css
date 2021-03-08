@@ -2,7 +2,14 @@
     display: flex;
     position: relative;
     height: 30px;
-    line-height: 30px;
+    font-size: 14px;
+    border-bottom: 1px solid #efefef;
+    line-height: 32px;
+    transition: all .3s;
+}
+
+.item.on-hover {
+    background-color: rgb(231, 231, 231);
 }
 
 .item .item-checkbox {
@@ -22,4 +29,14 @@
     border-radius: 2px;
     background-color: rgb(253, 101, 101);
     transform: translateY(-50%);
+    outline: none;
+    cursor: pointer;
+}
+
+.item .item-del:active {
+    background-color: rgb(253, 62, 62);
+}
+
+.hidden {
+    display: none;
 }

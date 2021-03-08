@@ -1,21 +1,35 @@
 import react,{Component} from 'react'
 import './item.css'
 class Item extends Component{
-    state = {isCheck:false}
+    state = {onHover:false}
 
     onChecked=(e)=>{
         let {info,onChecked} = this.props
         onChecked(info,e.target.checked)
     }
+
+    onHover=(flag)=>{
+       return (e)=>{
+           this.setState({onHover:flag})
+       }
+    }
+
+    handleDel=(item)=>{
+        let {onDelete} = this.props
+        return ()=>{
+            onDelete(item)
+        }
+    }
+
     render(){
-        let {info,onDelete} = this.props
-        let {isCheck} = this.state
-        isCheck = info.isDone
+        let {info} = this.props
+        let {onHover} = this.state
+
         return (
-            <div className="item">
-                <input className="item-checkbox" type="checkbox" defaultChecked={isCheck} onChange={this.onChecked}/>
-                <div className="item-body"><span>{info.name}</span></div>
-                <button className="item-del" onClick={onDelete}>删除</button>
+            <div className={`item ${onHover?'on-hover':''}`} onMouseEnter={this.onHover(true)} onMouseLeave={this.onHover(false)}>
+                <input className="item-checkbox" type="checkbox" checked={info.isDone} onChange={this.onChecked}/>
+                <div className="item-body" style={{textDecoration:info.isDone?'line-through':''}}><span>{info.name}</span></div>
+                <button className={`item-del ${onHover?'':'hidden'}`} onClick={this.handleDel(info)}>删除</button>
             </div>
         )
     }
